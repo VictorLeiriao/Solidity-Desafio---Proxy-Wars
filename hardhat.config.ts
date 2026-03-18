@@ -1,4 +1,5 @@
 import hardhatToolboxMochaEthersPlugin from "@nomicfoundation/hardhat-toolbox-mocha-ethers";
+import "@openzeppelin/hardhat-upgrades";
 import { configVariable, defineConfig } from "hardhat/config";
 
 export default defineConfig({
