@@ -25,9 +25,9 @@ describe("Bank Proxy Wars - Fase de Testes V1", function () {
 
   it("Deve permitir que um usuario faça um deposito", async function () {
     const valorDeposito = ethers.parseEther("1.0"); 
-    await Bank.connect(user1).depositar({ value: valorDeposito });
+    await Bank.connect(user1).deposit({ value: valorDeposito });
 
-    const saldoUsuario = await Bank.saldos(user1.address);
+    const saldoUsuario = await Bank.balance(user1.address);
     expect(saldoUsuario).to.equal(valorDeposito);
   });
 
@@ -35,19 +35,19 @@ describe("Bank Proxy Wars - Fase de Testes V1", function () {
     const valorDeposito = ethers.parseEther("2.0");
     const valorSaque = ethers.parseEther("0.5");
 
-    await Bank.connect(user1).depositar({ value: valorDeposito });
-    await Bank.connect(user1).sacar(valorSaque);
+    await Bank.connect(user1).deposit({ value: valorDeposito });
+    await Bank.connect(user1).withdraw(valorSaque);
 
-    const saldoRestante = await Bank.saldos(user1.address);
+    const saldoRestante = await Bank.balance(user1.address);
     expect(saldoRestante).to.equal(ethers.parseEther("1.5"));
   });
 
   it("Nao deve permitir saque maior que o saldo", async function () {
     const valorDeposito = ethers.parseEther("1.0");
-    await Bank.connect(user1).depositar({ value: valorDeposito });
+    await Bank.connect(user1).deposit({ value: valorDeposito });
 
     await expect(
-      Bank.connect(user1).sacar(ethers.parseEther("2.0"))
-    ).to.be.revertedWith("Saldo insuficiente");
+      Bank.connect(user1).withdraw(ethers.parseEther("2.0"))
+    ).to.be.revertedWith("Ta... boa tentativa kkkk, voce nao tem saldo para isso amigao!");
   });
 });

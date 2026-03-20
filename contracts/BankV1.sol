@@ -15,6 +15,7 @@ contract BankV1 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     event WithdrawMade(address indexed user, uint256 cashValue);
 
     // Segurança?
+    /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         // Trava o contrato de implementação para que ninguém possa inicializá-lo diretamente
         _disableInitializers();
