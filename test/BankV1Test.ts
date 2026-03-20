@@ -1,37 +1,33 @@
 import { expect } from "chai";
-import hre, { network } from "hardhat";
+import { ethers, upgrades } from "hardhat"; // <-- Importação limpa e direta!
 
-// MÁGICA DO HARDHAT 3: O ethers agora vem da rede conectada!
-const { ethers } = await network.connect();
-
-describe("Proxy Wars - Fase de Testes V1", function () {
+describe("Bank Proxy Wars - Fase de Testes V1", function () {
   
-  let banco: any;
-  let dono: any;
-  let usuario1: any;
+  let Bank: any;
+  let owner: any;
+  let user1: any;
 
   beforeEach(async function () {
-    [dono, usuario1] = await ethers.getSigners();
+    [owner, user1] = await ethers.getSigners();
 
     const BankV1 = await ethers.getContractFactory("BankV1");
 
-    // Usamos o (hre as any) para o TypeScript aceitar o plugin sem chiar
-    banco = await (hre as any).upgrades.deployProxy(BankV1, [dono.address], {
+    Bank = await upgrades.deployProxy(BankV1, [owner.address], {
       kind: "uups", 
     });
 
-    await banco.waitForDeployment();
+    await Bank.waitForDeployment();
   });
 
-  it("Deve definir o dono corretamente na inicializacao", async function () {
-    expect(await banco.owner()).to.equal(dono.address);
+  it("Deve definir o owner corretamente na inicializacao", async function () {
+    expect(await Bank.owner()).to.equal(owner.address);
   });
 
   it("Deve permitir que um usuario faça um deposito", async function () {
     const valorDeposito = ethers.parseEther("1.0"); 
-    await banco.connect(usuario1).depositar({ value: valorDeposito });
+    await Bank.connect(user1).depositar({ value: valorDeposito });
 
-    const saldoUsuario = await banco.saldos(usuario1.address);
+    const saldoUsuario = await Bank.saldos(user1.address);
     expect(saldoUsuario).to.equal(valorDeposito);
   });
 
@@ -39,19 +35,19 @@ describe("Proxy Wars - Fase de Testes V1", function () {
     const valorDeposito = ethers.parseEther("2.0");
     const valorSaque = ethers.parseEther("0.5");
 
-    await banco.connect(usuario1).depositar({ value: valorDeposito });
-    await banco.connect(usuario1).sacar(valorSaque);
+    await Bank.connect(user1).depositar({ value: valorDeposito });
+    await Bank.connect(user1).sacar(valorSaque);
 
-    const saldoRestante = await banco.saldos(usuario1.address);
+    const saldoRestante = await Bank.saldos(user1.address);
     expect(saldoRestante).to.equal(ethers.parseEther("1.5"));
   });
 
   it("Nao deve permitir saque maior que o saldo", async function () {
     const valorDeposito = ethers.parseEther("1.0");
-    await banco.connect(usuario1).depositar({ value: valorDeposito });
+    await Bank.connect(user1).depositar({ value: valorDeposito });
 
     await expect(
-      banco.connect(usuario1).sacar(ethers.parseEther("2.0"))
+      Bank.connect(user1).sacar(ethers.parseEther("2.0"))
     ).to.be.revertedWith("Saldo insuficiente");
   });
 });
