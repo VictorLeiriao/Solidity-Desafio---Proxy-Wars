@@ -17,6 +17,7 @@ async function main() {
 
   await bank.waitForDeployment();
 
+  //✅ Banco Proxy (Endereço Fixo) deployado com sucesso em: 0x5f01cCFECe767EF5F72882F3D9F67274190eE2C7
   const proxyAddress = await bank.getAddress();
   console.log("✅ Banco Proxy (Endereço Fixo) deployado com sucesso em:", proxyAddress);
   console.log("Guarde esse endereço! É com ele que vamos interagir e fazer o upgrade depois.");
