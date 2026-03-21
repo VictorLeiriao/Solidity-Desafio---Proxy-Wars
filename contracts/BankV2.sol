@@ -27,9 +27,9 @@ contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
 
     // O plugin EXIGE que a função original da V1 exista aqui para validação,
     // mesmo que o nosso proxy atual já tenha rodado ela no passado!
-    function initialize(address initialOwner) public initializer {
-        __Ownable_init(initialOwner);
-        __UUPSUpgradeable_init();
+    function initialize(address _owner) public initializer {
+        // Inicializa o controle de acesso (Ownable) definindo quem é o dono
+        __Ownable_init(_owner);
     }
 
     function initializeV2(uint256 _taxaInicial) public reinitializer(2) {     

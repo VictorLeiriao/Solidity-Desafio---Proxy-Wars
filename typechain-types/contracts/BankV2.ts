@@ -32,6 +32,7 @@ export interface BankV2Interface extends Interface {
       | "getAccountBalance"
       | "getWithdrawFee"
       | "getWithdrawFeeCollected"
+      | "initialize"
       | "initializeV2"
       | "owner"
       | "proxiableUUID"
@@ -75,6 +76,10 @@ export interface BankV2Interface extends Interface {
   encodeFunctionData(
     functionFragment: "getWithdrawFeeCollected",
     values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "initialize",
+    values: [AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "initializeV2",
@@ -136,6 +141,7 @@ export interface BankV2Interface extends Interface {
     functionFragment: "getWithdrawFeeCollected",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "initializeV2",
     data: BytesLike
@@ -310,6 +316,8 @@ export interface BankV2 extends BaseContract {
 
   getWithdrawFeeCollected: TypedContractMethod<[], [bigint], "view">;
 
+  initialize: TypedContractMethod<[_owner: AddressLike], [void], "nonpayable">;
+
   initializeV2: TypedContractMethod<
     [_taxaInicial: BigNumberish],
     [void],
@@ -374,6 +382,9 @@ export interface BankV2 extends BaseContract {
   getFunction(
     nameOrSignature: "getWithdrawFeeCollected"
   ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "initialize"
+  ): TypedContractMethod<[_owner: AddressLike], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "initializeV2"
   ): TypedContractMethod<[_taxaInicial: BigNumberish], [void], "nonpayable">;
