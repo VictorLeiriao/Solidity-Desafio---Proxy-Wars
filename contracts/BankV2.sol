@@ -62,7 +62,7 @@ contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reentranc
         return withdrawFee;
     }
 
-    function getWithdrawFeeCollected() public view returns (uint256) {
+    function getWithdrawFeeCollected() public view onlyOwner returns (uint256) {
         return totalWithdrawFeeCollected;
     }
 
