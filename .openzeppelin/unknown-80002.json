@@ -229,6 +229,137 @@
           ]
         }
       }
+    },
+    "246a09166b2322321e7a8e5cf3fefacfcbaacafcd30f1c9a843806e42974211b": {
+      "address": "0xaf6aA2ffdB922866E041db3147Dc676f2f2992A5",
+      "txHash": "0x9eddc335f9137fd63167f53996fe1d147c090df8e1ad992b87252e92baf41c50",
+      "layout": {
+        "solcVersion": "0.8.24",
+        "storage": [
+          {
+            "label": "balance",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "BankV3",
+            "src": "contracts\\BankV3.sol:12"
+          },
+          {
+            "label": "withdrawFee",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256",
+            "contract": "BankV3",
+            "src": "contracts\\BankV3.sol:15"
+          },
+          {
+            "label": "totalWithdrawFeeCollected",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256",
+            "contract": "BankV3",
+            "src": "contracts\\BankV3.sol:16"
+          },
+          {
+            "label": "_status",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256",
+            "contract": "BankV3",
+            "src": "contracts\\BankV3.sol:17"
+          },
+          {
+            "label": "isPaused",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_bool",
+            "contract": "BankV3",
+            "src": "contracts\\BankV3.sol:20"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_struct(InitializableStorage)224_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)13_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin\\contracts\\proxy\\utils\\Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin\\contracts\\proxy\\utils\\Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
     }
   }
 }
