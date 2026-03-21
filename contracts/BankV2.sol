@@ -4,9 +4,11 @@ pragma solidity ^0.8.24;
 import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import {ReentrancyGuardUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
 
-contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuard {
+// 2. Voltamos a usar a versão Upgradeable na herança
+contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuardUpgradeable {
+    
     // NUNCA PODEMOS ALTERAR ORDEM DO QUE JÁ EXISTE == COLLISION :(
     mapping(address => uint256) public balance;
 
@@ -23,7 +25,8 @@ contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reentranc
         _disableInitializers();
     }
 
-    function initializeV2(uint256 _taxaInicial) public reinitializer(2) {        
+    function initializeV2(uint256 _taxaInicial) public reinitializer(2) {     
+        __ReentrancyGuard_init();   
         withdrawFee = _taxaInicial;
     }
 
@@ -45,7 +48,6 @@ contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reentranc
         }
 
         balance[msg.sender] -= _valueRequested;
-
         (bool sucess, ) = payable(msg.sender).call{value: valueWithDiscount}("");
         require(sucess, "Falha ao enviar ether");
 
@@ -55,6 +57,14 @@ contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reentranc
     function updateWithdrawFee(uint256 _newFee) public onlyOwner {
         withdrawFee = _newFee;
         emit WithdrawFeeUpdated(_newFee);
+    }
+
+    function getWithdrawFee() public view returns (uint256) {
+        return withdrawFee;
+    }
+
+    function getWithdrawFeeCollected() public view onlyOwner returns (uint256) {
+        return totalWithdrawFeeCollected;
     }
 
     function getAccountBalance(address _account) public view returns (uint256) {
