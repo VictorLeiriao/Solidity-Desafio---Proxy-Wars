@@ -30,6 +30,8 @@ export interface BankV2Interface extends Interface {
       | "balance"
       | "deposit"
       | "getAccountBalance"
+      | "getWithdrawFee"
+      | "getWithdrawFeeCollected"
       | "initializeV2"
       | "owner"
       | "proxiableUUID"
@@ -65,6 +67,14 @@ export interface BankV2Interface extends Interface {
   encodeFunctionData(
     functionFragment: "getAccountBalance",
     values: [AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getWithdrawFee",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getWithdrawFeeCollected",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "initializeV2",
@@ -116,6 +126,14 @@ export interface BankV2Interface extends Interface {
   decodeFunctionResult(functionFragment: "deposit", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getAccountBalance",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getWithdrawFee",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getWithdrawFeeCollected",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -288,6 +306,10 @@ export interface BankV2 extends BaseContract {
     "view"
   >;
 
+  getWithdrawFee: TypedContractMethod<[], [bigint], "view">;
+
+  getWithdrawFeeCollected: TypedContractMethod<[], [bigint], "view">;
+
   initializeV2: TypedContractMethod<
     [_taxaInicial: BigNumberish],
     [void],
@@ -346,6 +368,12 @@ export interface BankV2 extends BaseContract {
   getFunction(
     nameOrSignature: "getAccountBalance"
   ): TypedContractMethod<[_account: AddressLike], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "getWithdrawFee"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "getWithdrawFeeCollected"
+  ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "initializeV2"
   ): TypedContractMethod<[_taxaInicial: BigNumberish], [void], "nonpayable">;

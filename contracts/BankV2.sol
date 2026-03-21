@@ -4,17 +4,17 @@ pragma solidity ^0.8.24;
 import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import {ReentrancyGuardUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
 
-// 2. Voltamos a usar a versão Upgradeable na herança
-contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuardUpgradeable {
+contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     
     // NUNCA PODEMOS ALTERAR ORDEM DO QUE JÁ EXISTE == COLLISION :(
     mapping(address => uint256) public balance;
 
-    // V2
+    // V2 (NOVAS VARIÁVEIS)
     uint256 public withdrawFee;
     uint256 public totalWithdrawFeeCollected;
+
+    uint256 private _status; 
 
     event DepositMade(address indexed user, uint256 cashValue);
     event WithdrawMade(address indexed user, uint256 cashValue);
@@ -26,8 +26,16 @@ contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reentranc
     }
 
     function initializeV2(uint256 _taxaInicial) public reinitializer(2) {     
-        __ReentrancyGuard_init();   
         withdrawFee = _taxaInicial;
+        _status = 1;
+    }
+
+    //FE!
+    modifier nonReentrant() {
+        require(_status != 2, "ReentrancyGuard: reentrant call");
+        _status = 2; // Tranca
+        _;
+        _status = 1; // Destranca
     }
 
     function deposit() public payable {
