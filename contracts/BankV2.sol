@@ -33,7 +33,6 @@ contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reentranc
         emit DepositMade(msg.sender, msg.value);
     }
 
-    // 2. Adicionamos o modificador `nonReentrant` aqui! A porta agora tranca.
     function withdraw(uint256 _valueRequested) public nonReentrant {
         require(_valueRequested > 0, "Hm... ta brincando comigo ne?... saldo tem que ser maior que ZERO rapaz!!!");
         require(balance[msg.sender] >= _valueRequested, "Ta... boa tentativa kkkk, voce nao tem saldo para isso amigao!");
