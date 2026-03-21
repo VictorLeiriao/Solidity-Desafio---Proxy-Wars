@@ -4,10 +4,9 @@ pragma solidity ^0.8.24;
 import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import {ReentrancyGuardUpgradeable} from "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
+import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
-contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuardUpgradeable {
-
+contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuard {
     // NUNCA PODEMOS ALTERAR ORDEM DO QUE JÁ EXISTE == COLLISION :(
     mapping(address => uint256) public balance;
 
@@ -24,9 +23,7 @@ contract BankV2 is Initializable, UUPSUpgradeable, OwnableUpgradeable, Reentranc
         _disableInitializers();
     }
 
-    function initializeV2(uint256 _taxaInicial) public reinitializer(2) {
-        __ReentrancyGuard_init();
-        
+    function initializeV2(uint256 _taxaInicial) public reinitializer(2) {        
         withdrawFee = _taxaInicial;
     }
 

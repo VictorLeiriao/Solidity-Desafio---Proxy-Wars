@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { BankV1 } from "./BankV1";
+export type { BankV2 } from "./BankV2";

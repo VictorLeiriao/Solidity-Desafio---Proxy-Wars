@@ -54,9 +54,17 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Errors__factory>;
     getContractFactory(
+      name: "ReentrancyGuard",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ReentrancyGuard__factory>;
+    getContractFactory(
       name: "BankV1",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BankV1__factory>;
+    getContractFactory(
+      name: "BankV2",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BankV2__factory>;
 
     getContractAt(
       name: "OwnableUpgradeable",
@@ -109,10 +117,20 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.Errors>;
     getContractAt(
+      name: "ReentrancyGuard",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ReentrancyGuard>;
+    getContractAt(
       name: "BankV1",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.BankV1>;
+    getContractAt(
+      name: "BankV2",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BankV2>;
 
     deployContract(
       name: "OwnableUpgradeable",
@@ -155,9 +173,17 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Errors>;
     deployContract(
+      name: "ReentrancyGuard",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ReentrancyGuard>;
+    deployContract(
       name: "BankV1",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV1>;
+    deployContract(
+      name: "BankV2",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV2>;
 
     deployContract(
       name: "OwnableUpgradeable",
@@ -210,10 +236,20 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Errors>;
     deployContract(
+      name: "ReentrancyGuard",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ReentrancyGuard>;
+    deployContract(
       name: "BankV1",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV1>;
+    deployContract(
+      name: "BankV2",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV2>;
 
     // default types
     getContractFactory(
