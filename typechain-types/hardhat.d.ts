@@ -70,10 +70,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BankV3__factory>;
     getContractFactory(
-      name: "BankV3",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BankV3__factory>;
-    getContractFactory(
       name: "BankV4",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BankV4__factory>;
@@ -149,11 +145,6 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.BankV3>;
     getContractAt(
-      name: "BankV3",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.BankV3>;
-    getContractAt(
       name: "BankV4",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -211,10 +202,6 @@ declare module "hardhat/types/runtime" {
       name: "BankV2",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV2>;
-    deployContract(
-      name: "BankV3",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BankV3>;
     deployContract(
       name: "BankV3",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -289,11 +276,6 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV2>;
-    deployContract(
-      name: "BankV3",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BankV3>;
     deployContract(
       name: "BankV3",
       args: any[],
