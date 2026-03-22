@@ -47,13 +47,11 @@ contract BankV4 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
         __Ownable_init(initialOwner);
     }
     
-    /// @custom:oz-upgrades-validate-as-initializer
     function initializeV2(uint256 _taxaInicial) public reinitializer(2) {     
         withdrawFee = _taxaInicial;
         _status = 1;
     }
 
-    /// @custom:oz-upgrades-validate-as-initializer
     function initializeV3() public reinitializer(3) {
         isPaused = false;
     }

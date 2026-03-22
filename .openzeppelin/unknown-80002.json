@@ -360,6 +360,149 @@
           ]
         }
       }
+    },
+    "b3f29236bcbca105a053170e0234a684940d247535f32a1b49f595235b3b63ba": {
+      "address": "0xcFBbdde78fC0F2C705f3b7b14f149De10c323faC",
+      "txHash": "0x7aa73be9057c8d9f3b7f84758086cdd6eb91770e21dbd78b996e7157844a386e",
+      "layout": {
+        "solcVersion": "0.8.24",
+        "storage": [
+          {
+            "label": "balance",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "BankV4",
+            "src": "contracts\\BankV4.sol:12"
+          },
+          {
+            "label": "withdrawFee",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256",
+            "contract": "BankV4",
+            "src": "contracts\\BankV4.sol:15"
+          },
+          {
+            "label": "totalWithdrawFeeCollected",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256",
+            "contract": "BankV4",
+            "src": "contracts\\BankV4.sol:16"
+          },
+          {
+            "label": "_status",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256",
+            "contract": "BankV4",
+            "src": "contracts\\BankV4.sol:17"
+          },
+          {
+            "label": "isPaused",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_bool",
+            "contract": "BankV4",
+            "src": "contracts\\BankV4.sol:20"
+          },
+          {
+            "label": "isWhitelisted",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "BankV4",
+            "src": "contracts\\BankV4.sol:23"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_struct(InitializableStorage)224_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)13_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin\\contracts\\proxy\\utils\\Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin\\contracts\\proxy\\utils\\Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
     }
   }
 }
