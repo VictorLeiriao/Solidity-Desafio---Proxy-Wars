@@ -73,6 +73,10 @@ declare module "hardhat/types/runtime" {
       name: "BankV3",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BankV3__factory>;
+    getContractFactory(
+      name: "BankV4",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BankV4__factory>;
 
     getContractAt(
       name: "OwnableUpgradeable",
@@ -149,6 +153,11 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.BankV3>;
+    getContractAt(
+      name: "BankV4",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BankV4>;
 
     deployContract(
       name: "OwnableUpgradeable",
@@ -210,6 +219,10 @@ declare module "hardhat/types/runtime" {
       name: "BankV3",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV3>;
+    deployContract(
+      name: "BankV4",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV4>;
 
     deployContract(
       name: "OwnableUpgradeable",
@@ -286,6 +299,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV3>;
+    deployContract(
+      name: "BankV4",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV4>;
 
     // default types
     getContractFactory(

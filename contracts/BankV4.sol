@@ -5,7 +5,7 @@ import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Ini
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-contract BankV3 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
+contract BankV4 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     
 
     // V1
@@ -73,17 +73,7 @@ contract BankV3 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
         _;
     }
 
-    // FUNCOES
-    function breakContract() public onlyOwner {
-        isPaused = true;
-        emit Paused(msg.sender);
-    }
-
-    function unBreakContract() public onlyOwner {
-        isPaused = false;
-        emit Unpaused(msg.sender);
-    }
-
+    // FUNCOES DE USUARIOS/PUBLIC
     function registerRequest(string memory _name, uint256 _age, string memory _country) public {
         require(!isWhitelisted[msg.sender], "Voce ja tem conta aprovada!");
 
@@ -120,21 +110,32 @@ contract BankV3 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
         emit WithdrawMade(msg.sender, valueWithDiscount);
     }
 
+    function getWithdrawFee() public view returns (uint256) {
+        return withdrawFee;
+    }
+
+    function getAccountBalance(address _account) public view returns (uint256) {
+        return balance[_account];
+    }
+
+    // FUNCOES DE ADMINISTRACAO
+    function breakContract() public onlyOwner {
+        isPaused = true;
+        emit Paused(msg.sender);
+    }
+
+    function unBreakContract() public onlyOwner {
+        isPaused = false;
+        emit Unpaused(msg.sender);
+    }
+
     function updateWithdrawFee(uint256 _newFee) public onlyOwner {
         withdrawFee = _newFee;
         emit WithdrawFeeUpdated(_newFee);
     }
 
-    function getWithdrawFee() public view returns (uint256) {
-        return withdrawFee;
-    }
-
     function getWithdrawFeeCollected() public view onlyOwner returns (uint256) {
         return totalWithdrawFeeCollected;
-    }
-
-    function getAccountBalance(address _account) public view returns (uint256) {
-        return balance[_account];
     }
 
     function withdrawFeeAdmin() public onlyOwner {
@@ -145,6 +146,14 @@ contract BankV3 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
         
         (bool sucess, ) = payable(owner()).call{value: fee}("");
         require(sucess, "Falha ao enviar os lucros");
+    }
+
+    function blockAccount(address _account) public onlyOwner {
+        isWhitelisted[_account] = false;
+    }
+
+    function approveAccount(address _account) public onlyOwner {
+        isWhitelisted[_account] = true;
     }
 
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}

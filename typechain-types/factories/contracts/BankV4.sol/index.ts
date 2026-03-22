@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export { BankV3__factory } from "./BankV3__factory";
+export { BankV4__factory } from "./BankV4__factory";
