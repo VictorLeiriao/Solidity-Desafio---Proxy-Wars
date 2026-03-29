@@ -82,17 +82,13 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BankV5__factory>;
     getContractFactory(
-      name: "BankV6",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BankV6__factory>;
-    getContractFactory(
-      name: "BankV5",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BankV5__factory>;
-    getContractFactory(
       name: "BankV5BETA",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BankV5BETA__factory>;
+    getContractFactory(
+      name: "BankV6",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BankV6__factory>;
 
     getContractAt(
       name: "OwnableUpgradeable",
@@ -180,20 +176,15 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.BankV5>;
     getContractAt(
-      name: "BankV6",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.BankV6>;
-    getContractAt(
-      name: "BankV5",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.BankV5>;
-    getContractAt(
       name: "BankV5BETA",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.BankV5BETA>;
+    getContractAt(
+      name: "BankV6",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BankV6>;
 
     deployContract(
       name: "OwnableUpgradeable",
@@ -264,17 +255,13 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV5>;
     deployContract(
-      name: "BankV6",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BankV6>;
-    deployContract(
-      name: "BankV5",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BankV5>;
-    deployContract(
       name: "BankV5BETA",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV5BETA>;
+    deployContract(
+      name: "BankV6",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV6>;
 
     deployContract(
       name: "OwnableUpgradeable",
@@ -362,20 +349,15 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV5>;
     deployContract(
-      name: "BankV6",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BankV6>;
-    deployContract(
-      name: "BankV5",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BankV5>;
-    deployContract(
       name: "BankV5BETA",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV5BETA>;
+    deployContract(
+      name: "BankV6",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV6>;
 
     // default types
     getContractFactory(
