@@ -42,3 +42,5 @@ export type { BankV5 } from "./contracts/BankV5.sol/BankV5";
 export { BankV5__factory } from "./factories/contracts/BankV5.sol/BankV5__factory";
 export type { BankV6 } from "./contracts/BankV5.sol/BankV6";
 export { BankV6__factory } from "./factories/contracts/BankV5.sol/BankV6__factory";
+export type { BankV5BETA } from "./contracts/BankV5BETA.sol/BankV5BETA";
+export { BankV5BETA__factory } from "./factories/contracts/BankV5BETA.sol/BankV5BETA__factory";
