@@ -5,3 +5,4 @@ export type { BankV1 } from "./BankV1";
 export type { BankV2 } from "./BankV2";
 export type { BankV3 } from "./BankV3";
 export type { BankV4 } from "./BankV4";
+export type { BankV5 } from "./BankV5";

@@ -5,3 +5,4 @@ export { BankV1__factory } from "./BankV1__factory";
 export { BankV2__factory } from "./BankV2__factory";
 export { BankV3__factory } from "./BankV3__factory";
 export { BankV4__factory } from "./BankV4__factory";
+export { BankV5__factory } from "./BankV5__factory";

@@ -36,3 +36,5 @@ export type { BankV3 } from "./contracts/BankV3";
 export { BankV3__factory } from "./factories/contracts/BankV3__factory";
 export type { BankV4 } from "./contracts/BankV4";
 export { BankV4__factory } from "./factories/contracts/BankV4__factory";
+export type { BankV5 } from "./contracts/BankV5";
+export { BankV5__factory } from "./factories/contracts/BankV5__factory";
