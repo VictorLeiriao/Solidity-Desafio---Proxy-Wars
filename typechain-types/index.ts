@@ -22,6 +22,8 @@ export type { Initializable } from "./@openzeppelin/contracts/proxy/utils/Initia
 export { Initializable__factory } from "./factories/@openzeppelin/contracts/proxy/utils/Initializable__factory";
 export type { UUPSUpgradeable } from "./@openzeppelin/contracts/proxy/utils/UUPSUpgradeable";
 export { UUPSUpgradeable__factory } from "./factories/@openzeppelin/contracts/proxy/utils/UUPSUpgradeable__factory";
+export type { IERC20 } from "./@openzeppelin/contracts/token/ERC20/IERC20";
+export { IERC20__factory } from "./factories/@openzeppelin/contracts/token/ERC20/IERC20__factory";
 export type { Address } from "./@openzeppelin/contracts/utils/Address";
 export { Address__factory } from "./factories/@openzeppelin/contracts/utils/Address__factory";
 export type { Errors } from "./@openzeppelin/contracts/utils/Errors";
@@ -36,5 +38,7 @@ export type { BankV3 } from "./contracts/BankV3";
 export { BankV3__factory } from "./factories/contracts/BankV3__factory";
 export type { BankV4 } from "./contracts/BankV4";
 export { BankV4__factory } from "./factories/contracts/BankV4__factory";
-export type { BankV5 } from "./contracts/BankV5";
-export { BankV5__factory } from "./factories/contracts/BankV5__factory";
+export type { BankV5 } from "./contracts/BankV5.sol/BankV5";
+export { BankV5__factory } from "./factories/contracts/BankV5.sol/BankV5__factory";
+export type { BankV6 } from "./contracts/BankV5.sol/BankV6";
+export { BankV6__factory } from "./factories/contracts/BankV5.sol/BankV6__factory";
