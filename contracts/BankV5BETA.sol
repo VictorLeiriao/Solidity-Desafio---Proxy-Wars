@@ -17,7 +17,7 @@ error AmountDoesNotCoverFee(uint256 requested, uint256 fee);
 error TransferFailed();
 error NoProfitsToWithdraw();
 
-contract BankV5 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
+contract BankV5BETA is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     
     // V1
     mapping(address => uint256) public balance;

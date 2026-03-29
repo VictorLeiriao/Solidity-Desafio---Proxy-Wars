@@ -18,7 +18,7 @@ error NoProfitsToWithdraw();
 error TokenInsufficientLiquidity(uint256 requested, uint256 available);
 error PolInsufficientLiquidity(uint256 requested, uint256 available);
 
-contract BankV6 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
+contract BankV5 is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     
     // V1
     mapping(address => uint256) public balance;
