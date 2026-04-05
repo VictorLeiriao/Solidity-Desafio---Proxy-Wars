@@ -845,6 +845,185 @@
           ]
         }
       }
+    },
+    "71e219085027b885274f4c726cb61b915bdd1efd69390df08e6e0438d25787b0": {
+      "address": "0xA1f725ae98841a317d58953F713167Df1A9ef9D9",
+      "txHash": "0xbd45585eec109d98747f131b158f6b03a4ab8e2acf661a9f9526cbbc3c984c31",
+      "layout": {
+        "solcVersion": "0.8.24",
+        "storage": [
+          {
+            "label": "balance",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "BankV7",
+            "src": "contracts\\BankV7.sol:25"
+          },
+          {
+            "label": "withdrawFee",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256",
+            "contract": "BankV7",
+            "src": "contracts\\BankV7.sol:28"
+          },
+          {
+            "label": "totalWithdrawFeeCollected",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256",
+            "contract": "BankV7",
+            "src": "contracts\\BankV7.sol:29"
+          },
+          {
+            "label": "_status",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256",
+            "contract": "BankV7",
+            "src": "contracts\\BankV7.sol:30"
+          },
+          {
+            "label": "isPaused",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_bool",
+            "contract": "BankV7",
+            "src": "contracts\\BankV7.sol:33"
+          },
+          {
+            "label": "isWhitelisted",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "BankV7",
+            "src": "contracts\\BankV7.sol:36"
+          },
+          {
+            "label": "tokenExchange",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_contract(IERC20)1095",
+            "contract": "BankV7",
+            "src": "contracts\\BankV7.sol:39"
+          },
+          {
+            "label": "feeExchange",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_uint256",
+            "contract": "BankV7",
+            "src": "contracts\\BankV7.sol:40"
+          },
+          {
+            "label": "liquidityPOL",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_uint256",
+            "contract": "BankV7",
+            "src": "contracts\\BankV7.sol:41"
+          },
+          {
+            "label": "isBlocked",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "BankV7",
+            "src": "contracts\\BankV7.sol:50"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_struct(InitializableStorage)224_storage": {
+            "label": "struct Initializable.InitializableStorage",
+            "members": [
+              {
+                "label": "_initialized",
+                "type": "t_uint64",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_initializing",
+                "type": "t_bool",
+                "offset": 8,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_struct(OwnableStorage)13_storage": {
+            "label": "struct OwnableUpgradeable.OwnableStorage",
+            "members": [
+              {
+                "label": "_owner",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_contract(IERC20)1095": {
+            "label": "contract IERC20",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {
+          "erc7201:openzeppelin.storage.Ownable": [
+            {
+              "contract": "OwnableUpgradeable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:24",
+              "offset": 0,
+              "slot": "0"
+            }
+          ],
+          "erc7201:openzeppelin.storage.Initializable": [
+            {
+              "contract": "Initializable",
+              "label": "_initialized",
+              "type": "t_uint64",
+              "src": "@openzeppelin\\contracts\\proxy\\utils\\Initializable.sol:69",
+              "offset": 0,
+              "slot": "0"
+            },
+            {
+              "contract": "Initializable",
+              "label": "_initializing",
+              "type": "t_bool",
+              "src": "@openzeppelin\\contracts\\proxy\\utils\\Initializable.sol:73",
+              "offset": 8,
+              "slot": "0"
+            }
+          ]
+        }
+      }
     }
   }
 }

@@ -89,6 +89,14 @@ declare module "hardhat/types/runtime" {
       name: "BankV6",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BankV6__factory>;
+    getContractFactory(
+      name: "BankV6",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BankV6__factory>;
+    getContractFactory(
+      name: "BankV7",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BankV7__factory>;
 
     getContractAt(
       name: "OwnableUpgradeable",
@@ -185,6 +193,16 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.BankV6>;
+    getContractAt(
+      name: "BankV6",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BankV6>;
+    getContractAt(
+      name: "BankV7",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BankV7>;
 
     deployContract(
       name: "OwnableUpgradeable",
@@ -262,6 +280,14 @@ declare module "hardhat/types/runtime" {
       name: "BankV6",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV6>;
+    deployContract(
+      name: "BankV6",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV6>;
+    deployContract(
+      name: "BankV7",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV7>;
 
     deployContract(
       name: "OwnableUpgradeable",
@@ -358,6 +384,16 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV6>;
+    deployContract(
+      name: "BankV6",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV6>;
+    deployContract(
+      name: "BankV7",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV7>;
 
     // default types
     getContractFactory(
