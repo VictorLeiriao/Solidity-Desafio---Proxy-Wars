@@ -26,6 +26,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC1822Proxiable__factory>;
     getContractFactory(
+      name: "IERC1363",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC1363__factory>;
+    getContractFactory(
       name: "IERC1967",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC1967__factory>;
@@ -50,6 +54,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20__factory>;
     getContractFactory(
+      name: "SafeERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.SafeERC20__factory>;
+    getContractFactory(
       name: "Address",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Address__factory>;
@@ -57,6 +65,10 @@ declare module "hardhat/types/runtime" {
       name: "Errors",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Errors__factory>;
+    getContractFactory(
+      name: "IERC165",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC165__factory>;
     getContractFactory(
       name: "ReentrancyGuard",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -90,13 +102,17 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BankV6__factory>;
     getContractFactory(
-      name: "BankV6",
+      name: "BankV7",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BankV6__factory>;
+    ): Promise<Contracts.BankV7__factory>;
     getContractFactory(
       name: "BankV7",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BankV7__factory>;
+    getContractFactory(
+      name: "BankV8",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BankV8__factory>;
 
     getContractAt(
       name: "OwnableUpgradeable",
@@ -113,6 +129,11 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC1822Proxiable>;
+    getContractAt(
+      name: "IERC1363",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC1363>;
     getContractAt(
       name: "IERC1967",
       address: string | ethers.Addressable,
@@ -144,6 +165,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IERC20>;
     getContractAt(
+      name: "SafeERC20",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.SafeERC20>;
+    getContractAt(
       name: "Address",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -153,6 +179,11 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.Errors>;
+    getContractAt(
+      name: "IERC165",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC165>;
     getContractAt(
       name: "ReentrancyGuard",
       address: string | ethers.Addressable,
@@ -194,15 +225,20 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.BankV6>;
     getContractAt(
-      name: "BankV6",
+      name: "BankV7",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.BankV6>;
+    ): Promise<Contracts.BankV7>;
     getContractAt(
       name: "BankV7",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.BankV7>;
+    getContractAt(
+      name: "BankV8",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BankV8>;
 
     deployContract(
       name: "OwnableUpgradeable",
@@ -216,6 +252,10 @@ declare module "hardhat/types/runtime" {
       name: "IERC1822Proxiable",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC1822Proxiable>;
+    deployContract(
+      name: "IERC1363",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC1363>;
     deployContract(
       name: "IERC1967",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -241,6 +281,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC20>;
     deployContract(
+      name: "SafeERC20",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.SafeERC20>;
+    deployContract(
       name: "Address",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Address>;
@@ -248,6 +292,10 @@ declare module "hardhat/types/runtime" {
       name: "Errors",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Errors>;
+    deployContract(
+      name: "IERC165",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC165>;
     deployContract(
       name: "ReentrancyGuard",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -281,13 +329,17 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV6>;
     deployContract(
-      name: "BankV6",
+      name: "BankV7",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BankV6>;
+    ): Promise<Contracts.BankV7>;
     deployContract(
       name: "BankV7",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV7>;
+    deployContract(
+      name: "BankV8",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV8>;
 
     deployContract(
       name: "OwnableUpgradeable",
@@ -304,6 +356,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC1822Proxiable>;
+    deployContract(
+      name: "IERC1363",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC1363>;
     deployContract(
       name: "IERC1967",
       args: any[],
@@ -335,6 +392,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.IERC20>;
     deployContract(
+      name: "SafeERC20",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.SafeERC20>;
+    deployContract(
       name: "Address",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -344,6 +406,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Errors>;
+    deployContract(
+      name: "IERC165",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.IERC165>;
     deployContract(
       name: "ReentrancyGuard",
       args: any[],
@@ -385,15 +452,20 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV6>;
     deployContract(
-      name: "BankV6",
+      name: "BankV7",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.BankV6>;
+    ): Promise<Contracts.BankV7>;
     deployContract(
       name: "BankV7",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.BankV7>;
+    deployContract(
+      name: "BankV8",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.BankV8>;
 
     // default types
     getContractFactory(
