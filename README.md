@@ -1,57 +1,69 @@
-# Sample Hardhat 3 Beta Project (`mocha` and `ethers`)
+📄 Documentação Técnica: Smart Contract BankV8
+1. Visão Geral
+O BankV8 é um Smart Contract focado em serviços financeiros descentralizados. Ele opera como uma plataforma híbrida que combina um Banco Tradicional (depósitos, saques e cobrança de taxas) e uma DEX (Corretora Descentralizada) básica para troca de tokens nativos (POL) por um token ERC-20 específico.
 
-This project showcases a Hardhat 3 Beta project using `mocha` for tests and the `ethers` library for Ethereum interactions.
+O contrato foi construído focando em segurança, eficiência de gás e escalabilidade modular, utilizando o padrão de atualização UUPS (Universal Upgradeable Proxy Standard).
 
-To learn more about the Hardhat 3 Beta, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3 Beta](https://hardhat.org/hardhat3-beta-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
+2. Arquitetura e Padrões de Segurança
+Padrão de Proxy: UUPS (UUPSUpgradeable).
 
-## Project Overview
+Controle de Acesso: OwnableUpgradeable (Apenas o dono pode fazer upgrades e gerenciar configurações críticas).
 
-This example project includes:
+Eficiência de Gás: Uso exclusivo de Custom Errors ao invés de require com strings.
 
-- A simple Hardhat configuration file.
-- Foundry-compatible Solidity unit tests.
-- TypeScript integration tests using `mocha` and ethers.js
-- Examples demonstrating how to connect to different types of networks, including locally simulating OP mainnet.
+Prevenção de Reentrância: Modificador customizado nonReentrant operando com a variável de estado _status (1 = Livre, 2 = Ocupado).
 
-## Usage
+Interação com Tokens: Uso da biblioteca SafeERC20 da OpenZeppelin para garantir compatibilidade e segurança em transferências de tokens que não retornam booleanos perfeitamente.
 
-### Running Tests
+Prevenção de Colisão de Storage: Inclusão da variável uint256[50] private __gap no final do contrato para blindar o estado durante futuros upgrades.
 
-To run all the tests in the project, execute the following command:
+3. Módulos e Funcionalidades Principais
+Módulo 1: Integração e Conformidade (KYC & AML)
+Antes de realizar qualquer transação financeira, o usuário precisa ser validado pelo contrato.
 
-```shell
-npx hardhat test
-```
+registerRequest(nome, idade, país): Sistema de KYC (Know Your Customer). Registra os dados do usuário. Possui regra de negócio rígida: apenas maiores de 18 anos são aceitos. Ao passar, o usuário entra na Whitelist.
 
-You can also selectively run the Solidity or `mocha` tests:
+blockAccount(address) / approveAccount(address): Ferramentas de AML (Anti-Money Laundering) exclusivas do Admin para congelar contas suspeitas (Ficha Suja) ou reativá-las.
 
-```shell
-npx hardhat test solidity
-npx hardhat test mocha
-```
+Módulo 2: Conta Corrente (Banco)
+Serviços bancários para a moeda nativa da rede (POL).
 
-### Make a deployment to Sepolia
+deposit(): Função payable que permite a usuários registrados (VIPs) depositarem fundos no cofre do banco.
 
-This project includes an example Ignition module to deploy the contract. You can deploy this module to a locally simulated chain or to Sepolia.
+withdraw(valor): Permite o saque do saldo. Atenção: Uma taxa configurável (withdrawFee) é deduzida automaticamente do valor sacado e enviada para a tesouraria do banco.
 
-To run the deployment to a local chain:
+getAccountBalance(address): Função de leitura do saldo bancário do usuário.
 
-```shell
-npx hardhat ignition deploy ignition/modules/Counter.ts
-```
+Módulo 3: Câmbio e Liquidez (DEX)
+Sistema de conversão rápida (Swap) entre a moeda nativa (POL) e o Token ERC-20 oficial do banco.
 
-To run the deployment to Sepolia, you need an account with funds to send the transaction. The provided Hardhat configuration includes a Configuration Variable called `SEPOLIA_PRIVATE_KEY`, which you can use to set the private key of the account you want to use.
+buyToken(): Função payable onde o usuário envia POL e recebe o Token ERC-20. O cálculo obedece à taxa feeExchange (POL enviado × feeExchange = Tokens recebidos).
 
-You can set the `SEPOLIA_PRIVATE_KEY` variable using the `hardhat-keystore` plugin or by setting it as an environment variable.
+sellToken(quantidade): O usuário vende Tokens ERC-20 de volta para o contrato e recebe POL (Quantidade de Tokens ÷ feeExchange = POL recebido). Requer aprovação (approve) prévia do token no front-end.
 
-To set the `SEPOLIA_PRIVATE_KEY` config variable using `hardhat-keystore`:
+Mecânica de Proteção: Ambas as funções checam antecipadamente se o contrato possui liquidez suficiente (liquidityPOL ou estoque de tokens) antes de executar a transação, evitando falhas silenciosas.
 
-```shell
-npx hardhat keystore set SEPOLIA_PRIVATE_KEY
-```
+Módulo 4: Administração e Tesouraria (Admin)
+Controles absolutos do Owner do contrato para gerir o negócio e proteger os fundos.
 
-After setting the variable, you can run the deployment with the Sepolia network:
+Botão de Pânico (Circuit Breaker): breakContract() e unBreakContract() ativam o estado de Pausa, travando todas as funções que possuem o modificador whenNotPaused (saques, depósitos, swaps) em caso de suspeita de ataque.
 
-```shell
-npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
-```
+Gestão de Taxas: updateWithdrawFee() (limite de proteção até 10000 BPS / 100%) e updateFeeExchange() (evita divisão por zero).
+
+Gestão da Pool (DEX): addLiquidityPOL, addLiquidityToken, removeLiquidityPOL e removeLiquidityToken permitem ao dono abastecer ou retirar o caixa da corretora.
+
+Saque de Lucros: withdrawFeeAdmin() transfere todas as taxas de saque acumuladas pelos clientes (totalWithdrawFeeCollected) direto para a carteira do administrador.
+
+Módulo 5: Upgradeability (Atualizações)
+_authorizeUpgrade(): Função interna obrigatória no padrão UUPS. Protegida pelo onlyOwner, ela dita quem tem o poder de migrar a lógica do V8 para uma futura implementação V9.
+
+4. Eventos Disparados (Logs)
+O contrato emite eventos para facilitar a indexação de dados pelo Front-end (dApp) e por exploradores de blocos:
+
+Transações Bancárias: DepositMade, WithdrawMade
+
+Gestão de Taxas: WithdrawFeeUpdated, FeeExchangeUpdated
+
+Atividades da DEX: TokenBuy, TokenSell, LiquidityPolAdd, LiquidityTokenAdd
+
+Segurança: Paused, Unpaused

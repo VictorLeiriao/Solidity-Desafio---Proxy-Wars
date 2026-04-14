@@ -1,0 +1,45 @@
+---
+description: Contexto do desafio acadêmico Web3 Proxy Wars (upgrade, segurança, pentest entre pares)
+alwaysApply: true
+---
+
+# Desafio Web3 - Proxy Wars (~1 semana)
+
+## Objetivo pedagógico
+
+Simular ciclo real: criar, publicar, atualizar e proteger um smart contract upgradeável (Proxy); depois trocar proxy + código com outro membro e tentar explorar vulnerabilidades de forma controlada. Foco em upgradeability, segurança, storage layout, permissões e técnicas usadas em auditorias/pentests.
+
+## Fase inicial (cada participante)
+
+- Hardhat ou Foundry, testnet pública, Transparent Proxy ou UUPS (OpenZeppelin).
+- Contrato com `initialize` (não construtor para estado), variáveis de estado básicas e funções públicas que as manipulem.
+
+## Evolução
+
+- Segunda implementação (v2) mantendo layout de storage íntegro + novas funcionalidades.
+- Upgrade via mecanismo oficial (ex.: `@openzeppelin/hardhat-upgrades`).
+
+## Blindagem (antes da troca)
+
+- `_authorizeUpgrade` / controle de upgrade correto.
+- Evitar colisão de storage (ordem de variáveis, `__gap` quando aplicável).
+- Modifiers em funções sensíveis; pausa ou restrições onde fizer sentido.
+- Mitigar reentrância (especialmente saques) e chamadas indevidas.
+
+## Fase de ataque
+
+Com proxy + fonte das implementações do colega: tentar comprometer o contrato (upgrade malicioso, authorizeUpgrade, storage collision, reinitialize indevido, delegatecall, reentrância em saque, etc.).
+
+## Entregáveis finais
+
+- Endereço do proxy e das implementações (v1, v2).
+- Código-fonte completo.
+- Relato de ataques tentados (scripts, passos, logs, resultados).
+- Relatório final: desenho, proteções, vulnerabilidades, correções, lições aprendidas.
+
+## Alinhamento neste repositório
+
+- Projeto usa UUPS (ex.: `contracts/BankV8.sol` com `__gap`, `onlyOwner` no upgrade).
+- Novas versões: não quebrar ordem de storage; novos campos após existentes ou em espaço reservado.
+- Qualquer função que transfira valor ou ativos (NFT, tokens): checklist reentrância, pausa, permissões.
+- Documentar vetores de teste úteis para a fase de ataque ao contrato do colega.
